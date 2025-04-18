@@ -8,6 +8,7 @@ import java.awt.Graphics2D;
 import javax.swing.JPanel;
 
 import entity.MainCharater;
+import entity.Monster;
 import logic.CollisionChecker;
 import logic.KeyHandler;
 import logic.TileMangement;
@@ -18,16 +19,19 @@ public class GamePanel extends JPanel implements Runnable {
     KeyHandler keyHandler = new KeyHandler();
     public TileMangement tileManager = new TileMangement(this);
     public MainCharater mainCharacter = new MainCharater(this);
+    public Monster monster = new Monster(this);
     public CollisionChecker collisionChecker = new CollisionChecker(this);
 
     public final int FPS = 60;
-    
+
     public final int originalTileSize = 16;
     public final int tileSize = originalTileSize * 3;
-    public final int maxCol = 26;
-    public final int maxRow = 18;
-    public final int screenWidth = tileSize*maxCol;
-    public final int screenHeight = tileSize*maxRow;
+    public final int maxScreenCol = 20;
+    public final int maxScreenRow = 16;
+    public final int screenWidth = tileSize*maxScreenCol;
+    public final int screenHeight = tileSize*maxScreenRow;
+    public final int maxWorldCol = 20;  //map
+    public final int maxWorldRow = 16;  //map
 
     public GamePanel() {
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
@@ -43,10 +47,10 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     @Override
-    public void run() {        
+    public void run() {
         double drawInterval = 1000000000.0 / FPS; // Assuming 60 FPS
         double nextDrawTime = System.nanoTime() + drawInterval;
-        
+
         while (gameThread != null) {
             update();
             repaint();
@@ -61,9 +65,10 @@ public class GamePanel extends JPanel implements Runnable {
             nextDrawTime += drawInterval;
         }
     }
-    
+
     public void update() {
-        
+        mainCharacter.update(keyHandler);
+        monster.update();
     }
 
     public void paintComponent(Graphics g) {
@@ -71,6 +76,7 @@ public class GamePanel extends JPanel implements Runnable {
         Graphics2D g2 = (Graphics2D) g;
         tileManager.draw(g2);
         mainCharacter.draw(g2);
+        monster.draw(g2);
     }
 
 }
