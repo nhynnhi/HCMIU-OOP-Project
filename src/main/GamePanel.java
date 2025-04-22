@@ -8,6 +8,7 @@ import java.awt.Graphics2D;
 import javax.swing.JPanel;
 
 import entity.MainCharater;
+import entity.Monster;
 import logic.CollisionChecker;
 import logic.KeyHandler;
 import logic.TileMangement;
@@ -18,10 +19,11 @@ public class GamePanel extends JPanel implements Runnable {
     KeyHandler keyHandler = new KeyHandler();
     public TileMangement tileManager = new TileMangement(this);
     public MainCharater mainCharacter = new MainCharater(this);
+    public Monster monster = new Monster(this);
     public CollisionChecker collisionChecker = new CollisionChecker(this);
 
     public final int FPS = 60;
-    
+
     public final int originalTileSize = 16;
     public final int tileSize = originalTileSize * 3;
     public final int maxScreenCol = 20;
@@ -45,10 +47,10 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     @Override
-    public void run() {        
+    public void run() {
         double drawInterval = 1000000000.0 / FPS; // Assuming 60 FPS
         double nextDrawTime = System.nanoTime() + drawInterval;
-        
+
         while (gameThread != null) {
             update();
             repaint();
@@ -63,7 +65,7 @@ public class GamePanel extends JPanel implements Runnable {
             nextDrawTime += drawInterval;
         }
     }
-    
+
     public void update() {
         mainCharacter.update(keyHandler);
     }
@@ -73,6 +75,7 @@ public class GamePanel extends JPanel implements Runnable {
         Graphics2D g2 = (Graphics2D) g;
         tileManager.draw(g2);
         mainCharacter.draw(g2);
+        monster.draw(g2);
     }
 
 }
