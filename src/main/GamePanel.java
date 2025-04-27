@@ -19,11 +19,10 @@ public class GamePanel extends JPanel implements Runnable {
     KeyHandler keyHandler = new KeyHandler();
     public TileMangement tileManager = new TileMangement(this);
     public MainCharacter mainCharacter = new MainCharacter(this);
-    public Monster monster = new Monster(this);
     public CollisionChecker collisionChecker = new CollisionChecker(this);
-
+    
     public final int FPS = 60;
-
+    
     public final int originalTileSize = 16;
     public final int tileSize = originalTileSize * 3;
     public final int maxScreenCol = 20;
@@ -32,6 +31,7 @@ public class GamePanel extends JPanel implements Runnable {
     public final int screenHeight = tileSize*maxScreenRow;
     public final int maxWorldCol = 20;  //map
     public final int maxWorldRow = 16;  //map
+    public Monster monster = new Monster(this, 5 * tileSize, 10 * tileSize);
 
     public GamePanel() {
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
@@ -68,6 +68,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     public void update() {
         mainCharacter.update(keyHandler);
+        monster.update();
     }
 
     public void paintComponent(Graphics g) {

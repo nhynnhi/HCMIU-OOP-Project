@@ -10,13 +10,13 @@ public class Monster extends Entity{
     int initialX;
 
     public void setDefaultValue() {
-        worldX = 5 * 48; // depends on the map
-        worldY = 10 * 48; // depends on the map
         speedX = 0;
     }
 
-    public Monster(GamePanel gp) {
+    public Monster(GamePanel gp, int worldX, int worldY) {
         super(gp);
+        this.worldX = worldX;
+        this.worldY = worldY;
         setDefaultValue();
         movingLength = 2 * gp.tileSize;
         initialX = worldX;
