@@ -17,6 +17,5 @@ public class Main {
         window.setVisible(true);
 
         panel.start();
-        System.out.println("hello world");
     }
 }

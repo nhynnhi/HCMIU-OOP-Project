@@ -7,7 +7,7 @@ import java.awt.Graphics2D;
 
 import javax.swing.JPanel;
 
-import entity.MainCharater;
+import entity.MainCharacter;
 import entity.Monster;
 import logic.CollisionChecker;
 import logic.KeyHandler;
@@ -18,7 +18,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     KeyHandler keyHandler = new KeyHandler();
     public TileMangement tileManager = new TileMangement(this);
-    public MainCharater mainCharacter = new MainCharater(this);
+    public MainCharacter mainCharacter = new MainCharacter(this);
     public Monster monster = new Monster(this);
     public CollisionChecker collisionChecker = new CollisionChecker(this);
 

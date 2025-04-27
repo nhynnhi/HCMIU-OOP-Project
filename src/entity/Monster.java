@@ -16,7 +16,7 @@ public class Monster extends Entity{
     }
 
     public Monster(GamePanel gp) {
-        this.gp = gp;
+        super(gp);
         setDefaultValue();
         movingLength = 2 * gp.tileSize;
         initialX = worldX;
@@ -25,8 +25,10 @@ public class Monster extends Entity{
     }
 
     public void draw(Graphics2D monster) {
+        screenX = worldX - gp.mainCharacter.worldX + gp.mainCharacter.screenX;
+        screenY = worldY - gp.mainCharacter.worldY + gp.mainCharacter.screenY;
         monster.setColor(Color.WHITE);
-        monster.fillRect(worldX, worldY, collisionBox.width, collisionBox.height);
+        monster.fillRect(screenX, screenY, collisionBox.width, collisionBox.height);
     }
 
     public void update(){

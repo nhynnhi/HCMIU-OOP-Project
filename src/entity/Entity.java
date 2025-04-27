@@ -17,11 +17,11 @@ public class Entity {
     public int[] collisionTile = new int[5]; // 1 = up, 2 = down, 3 = left, 4 = right check tile number of collision
     public Rectangle collisionBox;
 
-    public Entity() {
-
+    public Entity(GamePanel gp) {
+        this.gp = gp;
 
         // Initialize collision box
-        collisionBox = new Rectangle(0, 0, 48, 48); // Default size, can be adjusted
+        collisionBox = new Rectangle(0, 0, 32, 32); // Default size, can be adjusted
     }
 
 }
