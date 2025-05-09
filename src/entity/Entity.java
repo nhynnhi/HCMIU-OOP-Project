@@ -21,7 +21,7 @@ public class Entity {
         this.gp = gp;
 
         // Initialize collision box
-        collisionBox = new Rectangle(0, 0, 32, 32); // Default size, can be adjusted
+        collisionBox = new Rectangle(0, 0, 32, 48); // Default size, can be adjusted
     }
 
 }

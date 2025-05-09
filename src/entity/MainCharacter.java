@@ -52,8 +52,16 @@ public class MainCharacter extends Entity {
             }
         }
         
-
+        if (speedY != 0){
+            direction = "jumping";
+        }
         worldY += speedY;
+        
+        if (speedX < 0){
+            direction = "left";
+        } else if (speedX > 0){
+            direction = "right";
+        }
         worldX += speedX;
     }
 
