@@ -32,19 +32,32 @@ public class MainCharacter extends Entity {
                 speedY = -20;
                 delay = 0;
             }
+
+            if (keyH.leftPressed) {
+                speedX = -5;
+            } else if (keyH.rightPressed) {
+                speedX = 5;
+            }
+
+            if (speedY < 0 && collisionOn[1] == true) {
+                speedY = 0;
+                worldY = (collisionTile[1] + 1) * gp.tileSize + 1;
+            }
+
+            if (!keyH.leftPressed && !keyH.rightPressed) {
+                speedX = 0;
+            }else{
+                if (collisionOn[4] == true) {
+                    worldX = (collisionTile[4] - 1) * gp.tileSize + collisionGap - 6;
+                } else if (collisionOn[3] == true) {
+                    worldX = collisionTile[3] * gp.tileSize - collisionGap + 6;
+                }
+            }
+
+
+            worldY += speedY;
+            worldX += speedX;
         }
-        
-        if (speedY != 0){
-            direction = "jumping";
-        }
-        worldY += speedY;
-        
-        if (speedX < 0){
-            direction = "left";
-        } else if (speedX > 0){
-            direction = "right";
-        }
-        worldX += speedX;
     }
 
     private void falling() {
