@@ -20,6 +20,8 @@ public class Trap extends Entity {
         this.height = 32; // Set the height of the trap
         this.collisionBox.width = width; // Set the width of the collision box
         this.collisionBox.height = height; // Set the height of the collision box
+        this.collisionBox.x = worldX; // Set the x position of the collision box
+        this.collisionBox.y = worldY; // Set the y position of the collision box
     }
 
     public void draw(Graphics2D g2d) {
