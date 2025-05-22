@@ -9,10 +9,10 @@ import entity.Tile;
 import main.GamePanel;
 
 public class TileMangement {
-    GamePanel gp;
+    private GamePanel gp;
 
-    Tile[] tile;
-    int[][] mapTileNum;
+    protected Tile[] tile;
+    protected int[][] mapTileNum;
 
     public TileMangement(GamePanel gp) {
         this.gp = gp;
@@ -23,8 +23,8 @@ public class TileMangement {
 
     private void loadTile() {
         tile = new Tile[2];
-        tile[0] = new Tile(gp, 0);
-        tile[1] = new Tile(gp, 1);
+        tile[0] = new Tile(gp,0);
+        tile[1] = new Tile(gp,1);
     }
 
     private void loadMap(String filename) {
@@ -62,13 +62,13 @@ public class TileMangement {
             for (int i = 0; i < gp.maxScreenCol; i++) {
                 int worldX = i * gp.tileSize;  //tileCordinate
                 int worldY = j * gp.tileSize;  //tileCordinate
-                int screenX = worldX - gp.mainCharacter.worldX + gp.screenWidth/2;
-                int screenY = worldY - gp.mainCharacter.worldY + gp.screenHeight/2;
+                int screenX = worldX - gp.mainCharacter.getWorldX() + gp.screenWidth/2;
+                int screenY = worldY - gp.mainCharacter.getWorldY() + gp.screenHeight/2;
 
-                if( worldX > gp.mainCharacter.worldX - gp.screenWidth/2 - 1*gp.tileSize &&
-                    worldX < gp.mainCharacter.worldX + gp.screenWidth/2 + 1*gp.tileSize &&
-                    worldY > gp.mainCharacter.worldY - gp.screenHeight/2 - 1*gp.tileSize &&
-                    worldY < gp.mainCharacter.worldY + gp.screenHeight/2 + 1*gp.tileSize
+                if( worldX > gp.mainCharacter.getWorldX() - gp.screenWidth/2 - gp.tileSize &&
+                    worldX < gp.mainCharacter.getWorldX() + gp.screenWidth/2 + gp.tileSize &&
+                    worldY > gp.mainCharacter.getWorldY() - gp.screenHeight/2 - gp.tileSize &&
+                    worldY < gp.mainCharacter.getWorldY() + gp.screenHeight/2 + gp.tileSize
                 ){
                     tile[mapTileNum[i][j]].draw(g2d, screenX, screenY);
                 }

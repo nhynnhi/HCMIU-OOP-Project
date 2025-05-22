@@ -5,18 +5,20 @@ import java.awt.Graphics2D;
 
 import logic.KeyHandler;
 import main.GamePanel;
+import main.Main;
+
 import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 import java.io.IOException;
 
 public class MainCharacter extends Entity {
-    int collisionGap = (gp.tileSize - collisionBox.width) / 2;
-    int clock = 0;
-    int delay = 0;
-    boolean alive = true;
-    BufferedImage leftIdle1, leftIdle2, leftIdle3, leftIdle4, rightIdle1, rightIdle2, rightIdle3, rightIdle4;
-    BufferedImage leftJump1, leftJump2, leftJump3, leftJump4, leftJump5, leftJump6, rightJump1, rightJump2, rightJump3, rightJump4, rightJump5, rightJump6;
-    BufferedImage leftRun1, leftRun2, leftRun3, rightRun1, rightRun2, rightRun3;
+    private static MainCharacter instance = null;
+    private final int collisionGap = (gp.tileSize - collisionBox.width) / 2;
+    private int clock = 0;
+    private int delay = 0;
+    private BufferedImage leftIdle1, leftIdle2, leftIdle3, leftIdle4, rightIdle1, rightIdle2, rightIdle3, rightIdle4;
+    private BufferedImage leftJump1, leftJump2, leftJump3, leftJump4, leftJump5, leftJump6, rightJump1, rightJump2, rightJump3, rightJump4, rightJump5, rightJump6;
+    private BufferedImage leftRun1, leftRun2, leftRun3, rightRun1, rightRun2, rightRun3;
 
     void setDefaultValue() {
         screenX = gp.screenWidth / 2;
@@ -66,14 +68,21 @@ public class MainCharacter extends Entity {
         return ImageIO.read(getClass().getResourceAsStream(string + ".png"));
     }
 
-    public MainCharacter(GamePanel gp) {
+    public static MainCharacter getInstance(GamePanel gp) {
+        if (instance == null) {
+            instance = new MainCharacter(gp);
+        }
+        return instance;
+    }
+
+    private MainCharacter(GamePanel gp) {
         super(gp);
         setDefaultValue();
         getImage();
     }
 
     private void handleMovementInput(KeyHandler keyH) {
-        if (alive) {
+        if (isAlive) {
             if (keyH.upPressed && collisionOn[2] == true && delay > 5) {
                 speedY = -20;
                 delay = 0;
@@ -202,7 +211,7 @@ public class MainCharacter extends Entity {
     }
 
     public void draw(Graphics2D g2) {
-        if (alive) {
+        if (isAlive) {
             imageDisplayLogic(g2);
         }
     }

@@ -5,7 +5,7 @@ import java.awt.Graphics2D;
 import main.GamePanel;
 
 public class Trap extends Entity { 
-    GamePanel gp;
+    private final GamePanel gp;
     public int worldX, worldY;
     public int screenX, screenY;
     public int width, height;
@@ -34,7 +34,7 @@ public class Trap extends Entity {
 
     public void checkCollision() {
         if (gp.mainCharacter.collisionBox.intersects(this.collisionBox)) {
-            gp.mainCharacter.alive = false; // Main character dies
+            gp.mainCharacter.isAlive = false; // Main character dies
         }
     }
 }

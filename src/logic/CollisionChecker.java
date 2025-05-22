@@ -4,7 +4,7 @@ import entity.Entity;
 import main.GamePanel;
 
 public class CollisionChecker {
-    GamePanel gp;
+    private final GamePanel gp;
 
     public CollisionChecker(GamePanel gp) {
         this.gp = gp;
@@ -13,12 +13,12 @@ public class CollisionChecker {
     public void checkTile(Entity entity) {
         // Initialize collision states: 0 = no collision
         for (int i = 0; i < 5; i++) {
-            entity.collisionOn[i] = false;
+            entity.setCollisionOn(i, false);
         }
-        int entityX = entity.collisionBox.x;
-        int entityY = entity.collisionBox.y;
-        int entityXend = entityX + entity.collisionBox.width;
-        int entityYend = entityY + entity.collisionBox.height;
+        int entityX = entity.getCollisionBox().x;
+        int entityY = entity.getCollisionBox().y;
+        int entityXend = entityX + entity.getCollisionBox().width;
+        int entityYend = entityY + entity.getCollisionBox().height;
         
         int entityLeftCol = entityX / gp.tileSize;
         int entityRightCol = entityXend / gp.tileSize;
@@ -29,53 +29,53 @@ public class CollisionChecker {
         int tileNum2;
         
         // Upward collision check
-        if (entity.speedY < 0) {
-            entityTopRow = (entityY - gp.mainCharacter.speedY) / gp.tileSize - 1;
+        if (entity.getSpeedY() < 0) {
+            entityTopRow = (entityY - gp.mainCharacter.getSpeedY()) / gp.tileSize - 1;
 
             if (entityTopRow < 0) {
-                entity.collisionOn[1] = true;
-                entity.collisionTile[1] = 1;
+                entity.setCollisionOn(1, true);
+                entity.setCollisionTile(1, 1);
             } else {
                 tileNum1 = gp.tileManager.mapTileNum[entityLeftCol][entityTopRow];
                 tileNum2 = gp.tileManager.mapTileNum[entityRightCol][entityTopRow];
-                if (gp.tileManager.tile[tileNum1].isSolid || gp.tileManager.tile[tileNum2].isSolid) {
-                    entity.collisionOn[1] = true;
-                    entity.collisionTile[1] = entityTopRow;
+                if (gp.tileManager.tile[tileNum1].isSolid() || gp.tileManager.tile[tileNum2].isSolid()) {
+                    entity.setCollisionOn(1, true);
+                    entity.setCollisionTile(1, entityTopRow);
                 }
             }
             entityTopRow = entityY / gp.tileSize;
         }
         
         // Downward collision check
-        if (entity.speedY >= 0) {
-            entityBottomRow = (entityYend + gp.mainCharacter.speedY + 1) / gp.tileSize;
+        if (entity.getSpeedY() >= 0) {
+            entityBottomRow = (entityYend + gp.mainCharacter.getSpeedY() + 1) / gp.tileSize;
             if (entityBottomRow >= gp.tileManager.mapTileNum[0].length) {
-                entity.collisionOn[2] = true;
-                entity.collisionTile[2] = gp.tileManager.mapTileNum[0].length;
+                entity.setCollisionOn(2, true);
+                entity.setCollisionTile(2, gp.tileManager.mapTileNum[0].length);
             } else {
                 tileNum1 = gp.tileManager.mapTileNum[entityLeftCol][entityBottomRow];
                 tileNum2 = gp.tileManager.mapTileNum[entityRightCol][entityBottomRow];
-                if (gp.tileManager.tile[tileNum1].isSolid || gp.tileManager.tile[tileNum2].isSolid) {
-                    entity.collisionOn[2] = true;
-                    entity.collisionTile[2] = entityBottomRow;
+                if (gp.tileManager.tile[tileNum1].isSolid() || gp.tileManager.tile[tileNum2].isSolid()) {
+                    entity.setCollisionOn(2, true);
+                    entity.setCollisionTile(2, entityBottomRow);
                 }
             }
             entityBottomRow = entityYend / gp.tileSize;
         }
 
         // Leftward collision check
-        if (entity.speedX < 0) {
+        if (entity.getSpeedX() < 0) {
             if (entityX < 0) {
-                entity.collisionOn[3] = true;
-                entity.collisionTile[3] = 0;
+                entity.setCollisionOn(3, true);
+                entity.setCollisionTile(3, 0);
             } else {
-                entityLeftCol = (entityX + gp.mainCharacter.speedX) / gp.tileSize;
+                entityLeftCol = (entityX + gp.mainCharacter.getSpeedX()) / gp.tileSize;
 
                 tileNum1 = gp.tileManager.mapTileNum[entityLeftCol][entityTopRow];
                 tileNum2 = gp.tileManager.mapTileNum[entityLeftCol][entityBottomRow];
-                if (gp.tileManager.tile[tileNum1].isSolid || gp.tileManager.tile[tileNum2].isSolid) {
-                    entity.collisionOn[3] = true;
-                    entity.collisionTile[3] = entityLeftCol + 1;
+                if (gp.tileManager.tile[tileNum1].isSolid() || gp.tileManager.tile[tileNum2].isSolid()) {
+                    entity.setCollisionOn(3, true);
+                    entity.setCollisionTile(3, entityLeftCol + 1);
                 }
 
                 entityLeftCol = entityX / gp.tileSize;
@@ -83,17 +83,17 @@ public class CollisionChecker {
         }
 
         // Rightward collision check
-        if (entity.speedX > 0) {
-            entityRightCol = (entityXend + gp.mainCharacter.speedX) / gp.tileSize;
+        if (entity.getSpeedX() > 0) {
+            entityRightCol = (entityXend + gp.mainCharacter.getSpeedX()) / gp.tileSize;
             if (entityRightCol >= gp.tileManager.mapTileNum.length) {
-                entity.collisionOn[4] = true;
-                entity.collisionTile[4] = gp.tileManager.mapTileNum.length;
+                entity.setCollisionOn(4, true);
+                entity.setCollisionTile(4, gp.tileManager.mapTileNum.length);
             } else {
                 tileNum1 = gp.tileManager.mapTileNum[entityRightCol][entityTopRow];
                 tileNum2 = gp.tileManager.mapTileNum[entityRightCol][entityBottomRow];
-                if (gp.tileManager.tile[tileNum1].isSolid || gp.tileManager.tile[tileNum2].isSolid) {
-                    entity.collisionOn[4] = true;
-                    entity.collisionTile[4] = entityRightCol;
+                if (gp.tileManager.tile[tileNum1].isSolid() || gp.tileManager.tile[tileNum2].isSolid()) {
+                    entity.setCollisionOn(4, true);
+                    entity.setCollisionTile(4, entityRightCol);
                 }
             }
             entityRightCol = entityXend / gp.tileSize;

@@ -5,9 +5,8 @@ import java.awt.Graphics2D;
 import main.GamePanel;
 
 public class Monster extends Entity{
-    public boolean alive = true;
-    int movingLength;
-    int initialX;
+    private int movingLength;
+    private int initialX;
 
     public void setDefaultValue() {
         speedX = 0;
@@ -24,8 +23,16 @@ public class Monster extends Entity{
         this.collisionBox.height = 48; // Set the height of the collision box
     }
 
+    public void setInitialX(int initialX) {
+        this.initialX = initialX;
+    }
+
+    public void setMovingLength(int movingLength) {
+        this.movingLength = movingLength;
+    }
+
     public void draw(Graphics2D monster) {
-        if(alive) {
+        if(isAlive) {
             screenX = worldX - gp.mainCharacter.worldX + gp.mainCharacter.screenX;
             screenY = worldY - gp.mainCharacter.worldY + gp.mainCharacter.screenY;
             monster.setColor(Color.WHITE);
@@ -34,7 +41,7 @@ public class Monster extends Entity{
     }
 
     public void update(){
-        if (alive) {
+        if (isAlive) {
             if (worldX >= initialX + movingLength) {
                 speedX = -1; // Move left
             } else if (worldX <= initialX) {
@@ -49,15 +56,15 @@ public class Monster extends Entity{
     public void checkCollision() {
         collisionBox.setLocation(worldX, worldY);
 
-        if (alive && gp.mainCharacter.collisionBox.intersects(this.collisionBox)) {
+        if (isAlive && gp.mainCharacter.collisionBox.intersects(this.collisionBox)) {
             int mainBottom = gp.mainCharacter.worldY + gp.tileSize;
             int monsterTop = this.worldY;
 
             if (mainBottom >= monsterTop && gp.mainCharacter.speedY > 0) {
-                alive = false;
+                isAlive = false;
                 gp.mainCharacter.speedY = -10; // Bounce up after kill
             } else {
-                gp.mainCharacter.alive = false;
+                gp.mainCharacter.isAlive = false;
             }
         }
     }

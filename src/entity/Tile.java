@@ -7,16 +7,14 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 
-public class Tile {
-    GamePanel gp;
+public class Tile extends Entity{
+    private GamePanel gp;
     private int tileNum;
     private BufferedImage tileImage;
-    public boolean isSolid = false;
-
-    
+    private boolean isSolid = false;
 
     public Tile(GamePanel gp, int tileNum) {
-        this.gp = gp;
+        super(gp);
         this.tileNum = tileNum;
         if (tileNum == 1) {
             isSolid = true;
