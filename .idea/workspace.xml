@@ -5,8 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dba014d4-8f0f-45d5-b984-6044f5a1a1dc" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/HCMIU-OOP-Project.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/HCMIU-OOP-Project.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entity/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entity/Entity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entity/MainCharacter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entity/MainCharacter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/entity/Monster.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entity/Monster.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entity/Tile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entity/Tile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entity/Trap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entity/Trap.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/logic/CollisionChecker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/logic/CollisionChecker.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/logic/TileMangement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/logic/TileMangement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/GamePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/GamePanel.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,17 +44,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Main.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "preferences.lookFeel"
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="Activation" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="ALTERNATIVE_JRE_PATH" value="19" />
@@ -90,16 +101,5 @@
         </entry>
       </map>
     </option>
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/Main.java</url>
-          <line>21</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>
